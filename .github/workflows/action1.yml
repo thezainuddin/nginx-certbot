@@ -31,7 +31,7 @@ jobs:
           SSH_HOST: ${{ secrets.SSH_HOST }}
 
       - name: Stop the server
-        run: ssh staging 'sudo systemctl stop my-application'
+        run: ssh staging 'sudo systemctl status nginx'
 
       - name: Check out the source
         run: ssh staging 'cd my-application && git fetch && git reset --hard origin/master'
