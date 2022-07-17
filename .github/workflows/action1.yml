@@ -33,7 +33,7 @@ jobs:
           SSH_HOST: ${{ secrets.SSH_HOST }}
 
       - name: Start containers
-        run: docker-compose -f "docker-compose.yml" up -d --build
+        run: docker-compose -f "docker-compose.yml" up -d
         
       - name: Stop the server
         run: ssh staging 'docker ps'
