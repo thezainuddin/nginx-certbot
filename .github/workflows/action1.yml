@@ -32,11 +32,14 @@ jobs:
           SSH_KEY: ${{ secrets.SSH_KEY }}
           SSH_HOST: ${{ secrets.SSH_HOST }}
 
+      - name: Start containers
+        run: docker-compose -f "docker-compose.yml" up -d --build
+        
       - name: Stop the server
-        run: ssh staging 'sudo systemctl status nginx'
+        run: ssh staging 'docker ps'
 
       - name: Check out the source
-        run: ssh staging 'touch testFile.txt && pwd'
+        run: ssh staging 'echo docker ps >> testFile.txt'
 
       - name: Start the server
         if: ${{ always() }}
