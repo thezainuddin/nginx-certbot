@@ -5,6 +5,7 @@ on:
       # When someone push to `main` branch
       - main
 jobs:
+  
   # test:
   #   ...
   deploy:
@@ -13,6 +14,7 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     # needs: test
     steps:
+      - uses: actions/checkout@v3
       - name: Configure SSH
         run: |
           mkdir -p ~/.ssh/
