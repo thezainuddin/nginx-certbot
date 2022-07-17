@@ -34,7 +34,7 @@ jobs:
         run: ssh staging 'sudo systemctl status nginx'
 
       - name: Check out the source
-        run: ssh staging 'cd my-application && git fetch && git reset --hard origin/master'
+        run: ssh staging 'touch testFile.txt; pwd'
 
       - name: Start the server
         if: ${{ always() }}
