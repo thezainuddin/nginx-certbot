@@ -39,8 +39,7 @@ jobs:
         
       - name: Test the App
         run: |
-          ssh staging 'echo "changes_exist=true" >> $GITHUB_ENV'
-          echo "${{ env.changes_exist }}"
+          ssh staging 'if [ $( docker ps -a | grep tesapp_client_ | wc -l ) -gt 0 ]; then  echo "testContainer exists"; else   echo "testContainer does not exist" && raise error; fi'
 
       - name: Remove the workspace
         run: ssh staging 'rm -rf nginx-certbot/'
