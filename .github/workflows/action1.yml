@@ -32,10 +32,10 @@ jobs:
           SSH_HOST: ${{ secrets.SSH_HOST }}
       
       - name: Checkout the repo on the Staging Server
-        run: ssh staging 'git clone git@github.com:thezainuddin/nginx-certbot.git && cd nginx-certbot'
+        run: ssh staging 'git clone git@github.com:thezainuddin/nginx-certbot.git'
       
       - name: Start containers
-        run: ssh staging 'docker-compose -f "docker-compose.yml" up -d'
+        run: ssh staging 'cd nginx-certbot && docker-compose -f "docker-compose.yml" up -d'
         
       - name: Stop the server
         run: ssh staging 'docker ps'
