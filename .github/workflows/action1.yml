@@ -37,12 +37,8 @@ jobs:
       - name: Start containers
         run: ssh staging 'cd nginx-certbot && docker-compose -f "docker-compose.yml" up -d'
         
-      - name: Stop the server
+      - name: Test the App
         run: ssh staging 'docker ps'
 
-      - name: Check out the source
-        run: ssh staging 'echo docker ps >> testFile.txt'
-
-      - name: Start the server
-        if: ${{ always() }}
-        run: ssh staging 'sudo systemctl start my-application'
+      - name: Remove the workspace
+        run: ssh staging 'rm -rf nginx-certbot/'
