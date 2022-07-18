@@ -38,7 +38,9 @@ jobs:
         run: ssh staging 'cd nginx-certbot && docker-compose -f "docker-compose.yml" up -d'
         
       - name: Test the App
-        run: ssh staging 'docker ps'
+        run: |
+          ssh staging 'echo "changes_exist=true" >> $GITHUB_ENV'
+          echo "${{ env.changes_exist }}"
 
       - name: Remove the workspace
         run: ssh staging 'rm -rf nginx-certbot/'
