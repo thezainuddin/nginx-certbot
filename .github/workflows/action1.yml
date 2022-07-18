@@ -39,7 +39,7 @@ jobs:
         
       - name: Test the App
         run: |
-          ssh staging 'if [ $( docker ps -a | grep tesapp_client_ | wc -l ) -gt 0 ]; then  echo "testContainer exists"; else   echo "testContainer does not exist" && raise error; fi'
+          ssh staging 'if [ $( docker ps -a | grep testapp_client_ | wc -l ) -gt 0 ]; then  echo "testContainer exists"; else   echo "testContainer does not exist" && raise error; fi'
 
       - name: Remove the workspace
         if: always()
