@@ -42,4 +42,5 @@ jobs:
           ssh staging 'if [ $( docker ps -a | grep tesapp_client_ | wc -l ) -gt 0 ]; then  echo "testContainer exists"; else   echo "testContainer does not exist" && raise error; fi'
 
       - name: Remove the workspace
+        if: always()
         run: ssh staging 'rm -rf nginx-certbot/'
